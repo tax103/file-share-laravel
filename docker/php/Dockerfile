@@ -1,4 +1,5 @@
 FROM php:8.2-fpm
+EXPOSE 5173
 RUN apt-get update \
     && apt-get install -y \
     git \
@@ -31,3 +32,5 @@ RUN npm --version
 WORKDIR /src
 ADD . /src/storage
 RUN chown -R www-data:www-data /src/storage
+
+ENTRYPOINT [ "bash", "-c", "composer install; npm install; exec php-fpm" ]

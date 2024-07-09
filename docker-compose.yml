@@ -17,6 +17,8 @@ services:
       context: ./docker/php
     depends_on:
       - fs-laravel-mysql
+    ports:
+      - 5173:5173
     volumes:
       - ./:/src
       - /src/node_modules
