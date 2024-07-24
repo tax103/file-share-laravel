@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+    server: {
+        hmr: {
+            clientPort: 5173,
+            host: 'localhost',
+        }
+    },
     plugins: [
         laravel({
             input: [
@@ -10,14 +17,19 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
+        }),
     ],
-    server: {
-        host: true,
-        hmr: {
-            host: 'localhost',
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.esm-bundler.js',
         },
-        watch: {
-          usePolling: true,
-        },
+        extensions: ['.vue', '.js'],
     },
 });

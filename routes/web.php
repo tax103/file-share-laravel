@@ -19,3 +19,5 @@ use App\Http\Controllers\UploadController;
 // });
 
 Route::resource('upload', UploadController::class);
+Route::post('/upload/result', [UploadController::class, 'result']);
+Route::get('/download/{filekey}', [DownloadController::class, 'index']);
