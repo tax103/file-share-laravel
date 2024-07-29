@@ -30,7 +30,7 @@
                     <p class="text-danger">@{{form_attributes.mail.error_message}}</p>
                 </div>
                 <div class="mb-3">
-                    <label for="limit_date" class="control-label">掲載期限&nbsp;<span class="badge rounded-pill text-bg-danger">必須</span></label>
+                    <label for="limit_date" class="control-label">掲載期限（翌日～7日後まで）&nbsp;<span class="badge rounded-pill text-bg-danger">必須</span></label>
                     <input type="date" class="form-control" id="limit_date" name="limit_date" v-model="form_attributes.limit_date.value" min="{{$tomorrow}}" max="{{$nextweek}}" @input="onInput('limit_date')"></input>
                     <p class="text-danger">@{{form_attributes.limit_date.error_message}}</p>
                 </div>

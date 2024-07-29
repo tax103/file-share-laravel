@@ -8,24 +8,24 @@
             .mb-3 label{
                 line-height:220%;
             }
-            [v-cloak] {
-                display: none;
-            }
         </style>
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
-        <div id="app" class="container" v-cloak>
-            <form action="{{ url('/download/result')}}" method="POST">
+        <div id="app" class="container">
+            <form action="{{ url('/download/check')}}" method="POST">
                 {{ csrf_field() }}
-                <h1>ダウンロード</h1>
-                <div class="mb-3">
-                    <label for="password" class="control-label">パスワード&nbsp;<span class="badge rounded-pill text-bg-light">任意</span></label>
-                    <input type="text" class="form-control" id="password" name="password" v-model="form_attributes.password.value"></input>
-                </div>
-                <div class="mb-3 text-center">
-                    <button type="submit" name="add" class="btn btn-primary">ダウンロード</button>
-                </div>
+                <h1>{{$error_message}}</h1>
+                @if ($password_flg)
+                    <div class="mb-3">
+                        <label for="password" class="control-label">パスワード&nbsp;<span class="badge rounded-pill text-bg-danger" >必須</span></label>
+                        <input type="text" class="form-control" id="password" name="password"></input>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn btn-primary">ダウンロード</button>
+                    </div>
+                    <input type="hidden" id="file_key" name="file_key" value="{{$file_key}}">
+                @endif
             </form>
         </div>
     </body>

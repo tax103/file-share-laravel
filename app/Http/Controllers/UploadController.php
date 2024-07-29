@@ -44,8 +44,7 @@ class UploadController extends Controller
             $upload = new UploadItem();
             $upload->fill(['file_name' => $file_name,'mail' => $mail,'limit_date' => $limit_date,'password' => $password,'file_key' => $file_key]);
             $upload->save();
-
-            Log::info('upload', ['date' => $limit_date, 'mail' => $mail,'file' => $file_name,'file_key' => $file_key ,'size' => $size]);
+            Log::channel('upload')->notice('upload', ['date' => $limit_date, 'mail' => $mail,'file' => $file_name,'file_key' => $file_key ,'size' => $size]);
         }
 
         return view('upload_result', compact('message', 'file_url'));

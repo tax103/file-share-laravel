@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\DownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ use App\Http\Controllers\UploadController;
 // Route::get('/', function () {
 //     return view('upload');
 // });
-
+Route::redirect('/', '/upload');
 Route::resource('upload', UploadController::class);
 Route::post('/upload/result', [UploadController::class, 'result']);
 Route::get('/download/{filekey}', [DownloadController::class, 'index']);
+Route::post('/download/check', [DownloadController::class, 'check']);
