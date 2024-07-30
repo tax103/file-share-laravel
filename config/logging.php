@@ -131,14 +131,21 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/upload.log'),
             'level' => env('LOG_LEVEL', 'notice'),
-            'days' => 7,
+            'days' => 14,
         ],
 
         'download' => [
             'driver' => 'daily',
             'path' => storage_path('logs/download.log'),
             'level' => env('LOG_LEVEL', 'notice'),
-            'days' => 7,
+            'days' => 14,
+        ],
+
+        'delete' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/delete.log'),
+            'level' => env('LOG_LEVEL', 'notice'),
+            'days' => 14,
         ],
 
     ],

@@ -12,12 +12,12 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
-        <div id="app" class="container">
+        <div id="app" class="container mx-auto">
             <form action="{{ url('/download/check')}}" method="POST">
                 {{ csrf_field() }}
-                <h1>{{$error_message}}</h1>
+                <h1 class="text-center mt-4">{{$error_message}}</h1>
                 @if ($password_flg)
-                    <div class="mb-3">
+                    <div class="mb-3 mt-4"">
                         <label for="password" class="control-label">パスワード&nbsp;<span class="badge rounded-pill text-bg-danger" >必須</span></label>
                         <input type="text" class="form-control" id="password" name="password"></input>
                     </div>

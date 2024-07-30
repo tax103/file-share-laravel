@@ -11,7 +11,8 @@ RUN apt-get update \
     libmcrypt-dev \
     libpng-dev \
     libfontconfig1 \
-    libxrender1
+    libxrender1 \
+    cron
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
@@ -32,5 +33,10 @@ RUN npm --version
 WORKDIR /src
 ADD . /src/storage
 RUN chown -R www-data:www-data /src/storage
+
+# cronサービスを起動する
+COPY crontab /etc/cron.d/laravel-cron
+RUN chmod 0644 /etc/cron.d/laravel-cron
+RUN crontab /etc/cron.d/laravel-cron
 
 ENTRYPOINT [ "bash", "-c", "composer install; npm install; exec php-fpm" ]

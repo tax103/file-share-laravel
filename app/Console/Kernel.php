@@ -13,6 +13,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        // ↓ 1分ごとに定期実行する
+        $schedule
+        ->command('command:delete-file')   // 実行するコマンド
+        ->everyMinute()           // 動作確認用
+        // ->daily();                   //１日１回（毎日深夜１２時）
+        ;
     }
 
     /**

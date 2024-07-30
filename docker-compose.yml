@@ -1,4 +1,3 @@
-version: '3'
 services:
   fs-laravel-nginx:
     container_name: "fs-laravel-nginx"
