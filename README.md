@@ -36,12 +36,11 @@
 
 - .envはローカルで動かすことを想定した設定になっています
 
-- 現状、以下のコマンドを手動で実行する必要あり
-docker compose up -d --build
-docker compose exec app bash  
-
+- 現状、以下のコマンドを手動で実行する必要あり  
+docker compose up -d --build  
+docker compose exec app bash    
 php artisan migrate  
-npm run build
+npm run build  
 service cron start  
 
 # ■ TODO
