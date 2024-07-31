@@ -34,13 +34,15 @@
 - ログはアップロード、ダウンロード、削除でそれぞれ作成。14日でローテーション  
 （fs-laravel\storage\logs）
 
-- 現状、以下のコマンドを手動で実行する必要あり
+- .envはローカルで動かすことを想定した設定になっています
 
+- 現状、以下のコマンドを手動で実行する必要あり
+docker compose up --build
 docker compose exec app bash  
 
-service cron start  
 php artisan migrate  
 npm run build
+service cron start  
 
 # ■ TODO
 - サーバーサイドでのアップロード時のバリデーション（現状フロントのみ実装）
