@@ -37,7 +37,7 @@
 - .envはローカルで動かすことを想定した設定になっています
 
 - 現状、以下のコマンドを手動で実行する必要あり
-docker compose up --build
+docker compose up -d --build
 docker compose exec app bash  
 
 php artisan migrate  
