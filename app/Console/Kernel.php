@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
         // ↓ 1分ごとに定期実行する
         $schedule
         ->command('command:delete-file')   // 実行するコマンド
-        ->everyMinute()           // 動作確認用
-        // ->daily();                   //１日１回（毎日深夜１２時）
+        // ->everyMinute()           // 動作確認用
+        ->daily();                   //１日１回（毎日深夜１２時）
         ;
     }
 

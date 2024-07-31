@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('limit_date');
             $table->string('password')->nullable();
             $table->string('file_key')->index();
+            $table->boolean('delete_flg')->default(false);
         });
 
     }

@@ -15,7 +15,8 @@ class DownloadController extends Controller
         $password_flg = false;
 
         //データ有無の確認
-        $item_count = UploadItem::where('file_key', $file_key)->count();
+        $item_count = UploadItem::where('file_key', $file_key)
+        ->where('delete_flg',false)->count();
         if($item_count <> 1){
             $error_message = "エラー：URLが無効です";
             return view('download', compact('file_key','error_message','password_flg'));
@@ -23,6 +24,7 @@ class DownloadController extends Controller
         
         //有効期限の確認
         $item_count = UploadItem::where('file_key', $file_key)
+        ->where('delete_flg',false)
         ->where('limit_date','>=',date('Y-m-d'))->count();
         if($item_count <> 1){
             $error_message = "エラー：有効期限が切れています";

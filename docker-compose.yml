@@ -1,21 +1,21 @@
 services:
-  fs-laravel-nginx:
-    container_name: "fs-laravel-nginx"
+  nginx:
+    container_name: "nginx"
     build:
       context: ./docker/nginx
     depends_on:
-      - fs-laravel-app
+      - app
     ports:
       - 80:80
     volumes:
       - ./:/src
 
-  fs-laravel-app:
-    container_name: "fs-laravel-app"
+  app:
+    container_name: "app"
     build:
       context: ./docker/php
     depends_on:
-      - fs-laravel-mysql
+      - mysql
     ports:
       - 5173:5173
     volumes:
@@ -24,10 +24,10 @@ services:
       - /src/vendor
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
 
-  fs-laravel-mysql:
+  mysql:
     image: mysql:8.0.33
     command: --max_allowed_packet=32505856
-    container_name: "fs-laravel-mysql"
+    container_name: "mysql"
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
@@ -36,8 +36,8 @@ services:
     ports:
       - 3306:3306
 
-  fs-laravel-redis:
+  redis:
     image: redis:alpine
-    container_name: "fs-laravel-redis"
+    container_name: "redis"
     ports:
       - 16379:6379

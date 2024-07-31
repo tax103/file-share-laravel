@@ -25,7 +25,6 @@ class UploadController extends Controller
         $message = '';
         $file_url = '';
 
-        //エラーチェック（サイズ、必須項目）
         $contents   = $request->file('contents');
         $mail       = $request->input('mail');
         $limit_date = $request->input('limit_date');

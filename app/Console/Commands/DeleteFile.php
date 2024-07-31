@@ -29,9 +29,13 @@ class DeleteFile extends Command
     public function handle()
     {
         Log::debug("削除");
-        $items = UploadItem::select('file_key', 'file_name')->where('limit_date','<',date('Y-m-d'))->get();
+        $items = UploadItem::select('id', 'file_key', 'file_name')
+        ->where('limit_date','<',date('Y-m-d'))
+        ->where('delete_flg',false)
+        ->get();
         foreach ($items as $item) {
             Storage::delete('uploads/'.$item->file_key);
+            UploadItem::where('id', $item->id)->update(['delete_flg' => true]);
             Log::channel('delete')->notice('delete', ['file' => $item->file_name,'file_key' => $item->file_key]);
         }
     }
